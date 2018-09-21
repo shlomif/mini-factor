@@ -5,6 +5,6 @@ project(mini-factor)
 
 #add_definitions('-g')
 #add_definitions('-Wall')
-#add_definitions('-std=c++11')
+add_definitions('-std=c++11')
 
 add_executable(${PROJECT_NAME} mini_factor.cpp)
