@@ -1,0 +1,17 @@
+os: linux
+dist: trusty
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -y cmake cmake-data cpanminus libperl-dev mercurial ninja-build perl valgrind
+install:
+    - which python3
+    - sudo -H `which python3` -m pip install meson
+perl:
+    - "5.26"
+python:
+    - "3.6"
+script:
+    - mkdir build
+    - cd build
+    - meson ..
+    - ninja
