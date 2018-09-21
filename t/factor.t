@@ -4,17 +4,16 @@ use strict;
 use warnings;
 
 use Test::More tests => 1002;
+use File::Glob qw/ bsd_glob /;
+
+my ($EXE) = grep { -e } bsd_glob('./mini_factor{-prod.exe,}');
 
 sub _check
 {
     my ($n) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    return is(
-        scalar `./mini_factor-prod.exe "$n"`,
-        scalar `factor "$n"`,
-        "Checking '$n'"
-    );
+    return is( scalar `"$EXE" "$n"`, scalar `factor "$n"`, "Checking '$n'" );
 }
 
 {
