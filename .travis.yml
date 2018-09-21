@@ -2,7 +2,7 @@ os: linux
 dist: trusty
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install -y cmake cmake-data cpanminus libperl-dev mercurial ninja-build perl valgrind
+    - sudo apt-get install -y cmake cmake-data cpanminus libperl-dev mercurial ninja-build perl python3-pip valgrind
 install:
     - which python3
     - sudo -H `which python3` -m pip install meson
