@@ -3,31 +3,28 @@
 use strict;
 use warnings;
 
-use Test::More tests => 1002;
+use Test::More tests => 3;
 use File::Glob qw/ bsd_glob /;
 
 my ($EXE) = grep { -e } bsd_glob('./mini_factor{-prod.exe,}');
 
 sub _check
 {
-    my ($n) = @_;
+    my ( $s, $desc ) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    return is( scalar `"$EXE" "$n"`, scalar `factor "$n"`, "Checking '$n'" );
+    return is( scalar `"$EXE" $s`, scalar `factor $s`, "Checking '$desc'" );
 }
 
 {
-    # TEST*1000
-    foreach my $n ( 1 .. 1000 )
-    {
-        _check($n);
-    }
+    # TEST*1
+    _check( ( join ' ', 1 .. 1000 ), "1 to 1000" );
 
     # TEST
-    _check(0);
+    _check( 0, "zero" );
 
     # TEST
-    _check(90000038937199);
+    _check( 90000038937199, '90000038937199' );
 }
 
 =head1 COPYRIGHT & LICENSE
