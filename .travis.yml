@@ -5,6 +5,7 @@ addons:
             - cmake-data
             - perl
 dist: xenial
+language: cpp
 os: linux
 script:
     - mkdir build
