@@ -1,17 +1,15 @@
-os: linux
+addons:
+    apt:
+        packages:
+            - cmake
+            - cmake-data
+            - perl
 dist: xenial
-before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get --no-install-recommends install -y cmake cmake-data perl
-install:
-    - true
-perl:
-    - "5.26"
-python:
-    - "3.6"
+os: linux
 script:
     - mkdir build
     - cd build
     - cmake ..
     - make
     - make test
+sudo: false
