@@ -2,7 +2,7 @@ os: linux
 dist: trusty
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install -y cmake cmake-data cpanminus libperl-dev mercurial ninja-build perl python3-pip valgrind
+    - sudo apt-get --no-install-recommends install -y cmake cmake-data cpanminus libperl-dev mercurial ninja-build perl python3-pip valgrind
 install:
     - true
 perl:
