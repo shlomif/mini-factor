@@ -32,32 +32,35 @@ int main(int argc, char * argv[])
         std::cerr << "You must supply a numeric argument!" << std::endl;
         return -1;
     }
-    long long number = std::stoll(argv[1]);
-    if (number < 0)
+    for (int i = 1; i < argc; ++i)
     {
-        std::cerr << "The argument must be non-negative!" << std::endl;
-        return -1;
-    }
-    std::cout << number << ':';
-    long long limit = 1 + sqrtl(number);
-    for (long long i = 2; i <= limit; i++)
-    {
-        bool entered = false;
-        while (number % i == 0)
+        long long number = std::stoll(argv[i]);
+        if (number < 0)
         {
-            entered = true;
-            number /= i;
-            std::cout << ' ' << i;
+            std::cerr << "The argument must be non-negative!" << std::endl;
+            return -1;
         }
-        if (entered)
+        std::cout << number << ':';
+        long long limit = 1 + sqrtl(number);
+        for (long long i = 2; i <= limit; ++i)
         {
-            limit = 1 + sqrtl(number);
+            bool entered = false;
+            while (number % i == 0)
+            {
+                entered = true;
+                number /= i;
+                std::cout << ' ' << i;
+            }
+            if (entered)
+            {
+                limit = 1 + sqrtl(number);
+            }
         }
+        if (number > 1)
+        {
+            std::cout << ' ' << number;
+        }
+        std::cout << std::endl;
     }
-    if (number > 1)
-    {
-        std::cout << ' ' << number;
-    }
-    std::cout << std::endl;
     return 0;
 }
