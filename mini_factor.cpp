@@ -41,24 +41,33 @@ int main(int argc, char * argv[])
             return -1;
         }
         std::cout << number << ':';
-        long long limit = 1 + sqrtl(number);
-        for (long long i = 2; i <= limit; ++i)
+        if (number > 0)
         {
-            bool entered = false;
-            while (number % i == 0)
+            // equivalent to number % 2
+            while ((number & 1) == 0)
             {
-                entered = true;
-                number /= i;
-                std::cout << ' ' << i;
+                std::cout << ' ' << 2;
+                number >>= 1;
             }
-            if (entered)
+            long long limit = 1 + sqrtl(number);
+            for (long long i = 3; i <= limit; i += 2)
             {
-                limit = 1 + sqrtl(number);
+                bool entered = false;
+                while (number % i == 0)
+                {
+                    entered = true;
+                    number /= i;
+                    std::cout << ' ' << i;
+                }
+                if (entered)
+                {
+                    limit = 1 + sqrtl(number);
+                }
             }
-        }
-        if (number > 1)
-        {
-            std::cout << ' ' << number;
+            if (number > 1)
+            {
+                std::cout << ' ' << number;
+            }
         }
         std::cout << std::endl;
     }
