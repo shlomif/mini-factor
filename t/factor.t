@@ -17,7 +17,7 @@ sub _check
 }
 
 {
-    # TEST*1
+    # TEST
     _check( ( join ' ', 1 .. 1000 ), "1 to 1000" );
 
     # TEST
